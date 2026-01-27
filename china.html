@@ -3,8 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>中国地理</title>
+    <link rel="stylesheet" href="css/test1.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/js/all.min.js"></script>
 </head>
 <body>
+    <button class="theme-btn" id="themToggle" title="切换深色/浅色模式">
+        <span class="themeIcon">
+            <i class="fa-regular fa-moon"></i>
+        </span>
+    </button>
 
+    <div class="carousel-container" id="carousel">
+        <div class="carousel-track" id="track"></div>
+        <div class="carousel-btn prev-btn" id="prevBtn">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="carousel-btn next-btn" id="nextBtn">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </div>
+
+    <div class="gallery-section">
+        <h2 class="section-title">探索秘境详情</h2>
+        <div class="grid-container" id="grid"></div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close-lightbox" id="closeLightbox">
+            <i class="fa-solid fa-xmark"></i>
+        </span>
+        <img class="lightbox-img" id="lightBoxImg" src="" alt="big">
+    </div>
+    <script src="JS1.js"></script>
 </body>
 </html>
