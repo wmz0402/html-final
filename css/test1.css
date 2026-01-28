@@ -18,7 +18,7 @@
     --toggle-btn-bg: #fff;
     --toggle-btn-icon: #333;
 }
-
+/*暗色*/
 body.dark-mode{
     --bg-color: #121212;
     --text-main-color: #f0f0f0;
@@ -47,7 +47,7 @@ body {
 .carousel-container {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 700px;
     overflow: hidden;
     background-color: #000;
 }

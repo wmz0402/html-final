@@ -56,7 +56,7 @@ let currentIndex = 0;
 let intervalId;
 
 function initCarousel() {
-   for(let i = 0;i < slidesData.length; i++){
+   for(let i = 0;i < 3; i++){
        const slide = slidesData[i];
        const slideDiv = document.createElement("div");
        slideDiv.classList.add("carousel-slide");
@@ -73,9 +73,9 @@ function initCarousel() {
 function updateSlidePosition(){
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
 }
-
+// 按钮
 function nextSlide(){
-    if(currentIndex === slidesData.length-1){
+    if(currentIndex === 3-1){
         currentIndex = 0;
     }else{
         currentIndex = currentIndex+1;
@@ -85,7 +85,7 @@ function nextSlide(){
 
 function prevSlide(){
     if(currentIndex === 0){
-        currentIndex = slidesData.length - 1;
+        currentIndex = 3 - 1;
     }else{
         currentIndex = currentIndex - 1;
     }
@@ -94,7 +94,7 @@ function prevSlide(){
 
 function startAutoPlay()
 {
-    intervalId = setInterval(nextSlide, 5000);
+    intervalId = setInterval(nextSlide, 3000);
 }
 function stopAutoPlay(){
     clearInterval(intervalId);
@@ -113,6 +113,21 @@ carouselContainer.addEventListener("mouseenter", stopAutoPlay);
 carouselContainer.addEventListener("mouseleave", startAutoPlay);
 
 // 3d卡片
+
+//深浅转换
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+const body = document.body;
+
+themeToggle.addEventListener("click", function(){
+    body.classList.toggle("dark-mode");
+    const icon = themeIcon.querySelector('i');
+    if(body.classList.contains("dark-mode")){
+        icon.className ="fa-solid fa-moon";
+    }else {
+        icon.className ="fa-regular fa-moon";
+    }
+})
 
 
 initCarousel();
