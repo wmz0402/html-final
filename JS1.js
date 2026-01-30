@@ -1,6 +1,6 @@
 const slidesData = [
     {
-        src:"img/img1.jpg",
+        src:"view/img1.jpg",
         title:"在藏东南遍地都是 “乔戈里峰”",
         desc:"卡甲乔是藏东南地区一座很典型的金字塔峰，有利剑般的峰顶，" +
             "等边三角形般的外形，海拔6447米，" +
@@ -9,7 +9,7 @@ const slidesData = [
             "还有一座小型的金字塔峰——马纳卓（海拔6264米）",
     },
     {
-        src:"img/img2.jpg",
+        src:"view/img2.jpg",
         title: "加舒尔布鲁木Ⅰ和Ⅱ峰",
         desc:"巴尔托洛冰川由多条冰川汇聚而成，" +
             "长60余公里，是极地以外全世界最长的冰川之一，" +
@@ -17,7 +17,7 @@ const slidesData = [
             "布洛阿特峰（海拔8051米）等众多世界著名高山。"
     },
     {
-        src:"img/img3.jpg",
+        src:"view/img3.jpg",
         title: "天上的阿里",
         desc:"位于喜马拉雅山脉西段的边境小县普兰，" +
             "因为被众多的雪山环绕被称为“雪围”。这里冰川资源非常丰富，" +
@@ -26,21 +26,21 @@ const slidesData = [
             "这样的景观在喜马拉雅山脉有很多，景致不输名声在外的珠穆朗玛峰。"
     },
     {
-        src:"img/img4.jpg",
+        src:"view/img4.jpg",
         title:"萨普冰川",
         desc: "念青唐古拉山脉东段位于昌都、林芝和那曲交界地区，" +
             "向东南继续延伸，与横断山脉的伯舒拉岭相接。隐秘的群峰中，" +
             "萨普神山如皇冠上的那颗宝石，日照金山，神秘瑰丽。",
     },
     {
-        src:"img/img5.jpg",
+        src:"view/img5.jpg",
         title:"寻访滇西北的湖泊",
         desc:"无底湖（当地藏语称为沃迪错），位于云南迪庆藏族" +
             "自治州香格里拉市格咱乡，是中甸七大雪山之一迪隆雪山数十个湖泊中的一个。" +
             "这些湖泊大都水质清澈，与草甸、森林、雪山、飞瀑、湿地、花卉等相伴，共同绘就了一幅幅绝妙的人间奇观。"
     },
     {
-        src:"img/img6.jpg",
+        src:"view/img6.jpg",
         title:"寻味重庆最美“第一山”——江津四面山",
         desc: "江津四面山在重庆风景名胜评美中，得票最多，被列为重庆最美第一山。" +
             "看了《重庆日报》刊载的评选结果，喜如泉涌，也感概万千。我是江津人，家乡的山被评为最美的第一山，怎会不高兴。" +
@@ -113,7 +113,43 @@ carouselContainer.addEventListener("mouseenter", stopAutoPlay);
 carouselContainer.addEventListener("mouseleave", startAutoPlay);
 
 // 3d卡片
+const grid = document.getElementById("grid");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const closeLightbox = document.getElementById("closeLightbox");
 
+function initCards() {
+    slidesData.forEach(function(item){
+        const cardScene = document.createElement("div");
+        cardScene.classList.add("card-scene");
+        cardScene.innerHTML = `
+                    <div class="card">
+                        <div class="card-font card-face">
+                        <img src="${item.src}" alt="${item.title}">
+                        <div class="card-front-caption">${item.title}</div>
+                    </div>
+                    <div class="card-face card-back">
+                        <h3>${item.title}</h3>
+                        <p>${item.desc}</p>
+                        <p class="hint">点击放大查看高清图</p>
+                    </div>
+                    </div>`;
+        cardScene.addEventListener("click", function(){
+            lightboxImg.src = item.src;
+            lightbox.classList.add("active");
+        });
+        grid.appendChild(cardScene);
+    });
+}
+
+closeLightbox.addEventListener("click", function(){
+    lightbox.classList.remove("active");
+});
+lightbox.addEventListener("click", function(e){
+    if(e.target === lightbox) {
+        lightbox.classList.remove("active");
+    }
+});
 //深浅转换
 const themeToggle = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
@@ -132,3 +168,4 @@ themeToggle.addEventListener("click", function(){
 
 initCarousel();
 startAutoPlay();
+initCards();
