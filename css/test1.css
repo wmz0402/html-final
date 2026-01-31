@@ -14,7 +14,7 @@
     /*阴影悬浮*/
     --card-shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.25);
     /*渐变*/
-    --overlay-bg: linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.4) 60%,rgba(0,0,0,0) 100%);
+    --overlay-bg: linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.4) 60%,rgba(0,0,0,0) 100%);    /*黑色渐变*/
     --toggle-btn-bg: #fff;
     --toggle-btn-icon: #333;
 }
@@ -43,7 +43,7 @@ body {
     overflow-x: hidden;
     transition: background-color 0.4s ease, color 0.4s ease;
 }
-
+/*视口*/
 .carousel-container {
     position: relative;
     width: 100%;
@@ -51,13 +51,13 @@ body {
     overflow: hidden;
     background-color: #000;
 }
-
+/*胶卷*/
 .carousel-track {
     display: flex;
     height: 100%;
     transition: transform 0.6s ease;
 }
-
+/*给当前照片设置规格*/
 .carousel-slide {
     min-width:100%;
     height: 100%;
@@ -68,8 +68,8 @@ body {
 .carousel-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
+    object-fit: cover;     /*智能裁剪，等比放大*/
+    display: block;        /*消除空白间隙*/
 }
 
 .slide-content {
@@ -79,14 +79,14 @@ body {
     width: 100%;
     padding: 40px 60px;
     background: var(--overlay-bg);
-    color: #ffffff;
-    text-align: left;
+    color: #fff;
+    text-align: left;     /*左对齐*/
 }
 
 .slide-title {
     font-size: 3rem;
-    margin-bottom:15px;
-    font-weight: 700;
+    margin-bottom:15px;      /*下边距*/
+    font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
     border-left: 5px solid var(--primary-color);
     padding-left: 20px;
@@ -117,7 +117,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);   /*模糊*/
 }
 
 .carousel-btn:hover {
@@ -154,7 +154,7 @@ body {
 }
 
 .theme-toggle-btn:hover{
-    transform: rotate(15deg) scale(1.1);
+    transform: rotate(15deg) scale(1.1);      /*旋转和放大*/
 }
 
 .gallery-section {
@@ -207,14 +207,14 @@ body {
     height: 100%;
     text-align: center;
     transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
-    transform-style: preserve-3d;    /*什么意思*/
+    transform-style: preserve-3d;
     border-radius: 15px;
     box-shadow: var(--card-shadow);
 }
 
 /*鼠标悬停卡片反转阴影扩散*/
 .card-scene:hover .card{
-    transform: rotateY(180deg);
+    transform: rotateY(180deg);  /*实现反转*/
     box-shadow: var(--card-shadow-hover);
 }
 
@@ -222,16 +222,15 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /*什么意思*/
-    backface-visibility: hidden; /*什么意思*/
+    backface-visibility: hidden; /*背面不可见*/
     border-radius: 15px;
-    overflow: hidden;  /*什么作用*/
+    overflow: hidden;  /*多出来的隐藏*/
 }
 
 .card-front img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;    /*保持图片不变形*/
 }
 
 .card-front-caption {
@@ -269,9 +268,9 @@ body {
     font-size: 0.95rem;
     line-height: 1.6;
     color: var(--text-sub);
-    display: -webkit-box;  /*什么意思*/
-    -webkit-box-orient: vertical; /*什么意思*/
-    -webkit-line-clamp: 10;  /*什么意思*/
+    display: -webkit-box;  /*伸缩盒子*/
+    -webkit-box-orient: vertical; /*元素垂直排列*/
+    -webkit-line-clamp: 10;  /*最多十行*/
     overflow: hidden;
     text-align: justify;
 }
@@ -281,26 +280,26 @@ body {
     font-size: 0.8rem;
     color: var(--text-sub);
     opacity: 0.7;
-    font-style: italic;  /*什么意思*/
-    text-align: center !important;
+    font-style: italic;  /*文字样式设置为斜体*/
+    text-align: center !important;   /*强制居中对齐*/
 }
 
-.lightbox {
+.lightbox {        /*黑色底，平时隐藏*/
     display: none;
     position: fixed;
-    z-index: 999;
+    z-index: 999;   /*覆盖后面的东西*/
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.9);
-    justify-content: center;
+    justify-content: center;       /*图片居中*/
     align-items: center;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-.lightbox.active {
+.lightbox.active {       /*激活状态 显现*/
     display: flex;
     opacity: 1;
 }
@@ -310,12 +309,12 @@ body {
     max-height: 90%;
     border-radius: 5px;
     box-shadow: 0 0 20px rgba(255,255,255,0.2);
-    animation: zoomIn 0.3s;
+    animation: zoomIn 0.3s;      /*执行的时间*/
 }
 
-@keyframes zoomIn {      /*什么意思*/
+@keyframes zoomIn {      /*图片放大的过程*/
     from {
-        transform: scale(0.8);
+        transform: scale(0.8);  /*刚开始的图片是原来的80%*/
     } to {
     transform: scale(1);
           }
@@ -329,4 +328,43 @@ body {
     font-weight: bold;
     font-size: 40px;
     cursor: pointer;
+}
+
+
+/*移动端适配*/
+
+@media screen and (max-width: 768px) {
+    .carousel-container {
+        height: 50vh;
+    }
+    .slide-content {
+        padding: 20px 20px;
+    }
+    .slide-title {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+        border-left-width: 3px;
+    }
+    .slide-desc {
+        font-size: 0.9rem;
+        -webkit-line-clamp: 4;   /*显示的行数*/
+        display: -webkit-box;  /*弹性伸缩盒子*/
+        -webkit-box-orient: vertical;  /*垂直方向*/
+        overflow: hidden;
+    }
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+        padding: 10px;
+    }
+    .card-scene {
+        height: 320px;
+    }
+    .theme-toggle-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        top: 15px;
+        right: 15px;
+    }
 }

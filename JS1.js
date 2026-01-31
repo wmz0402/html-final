@@ -48,25 +48,25 @@ const slidesData = [
     }
 ];
 
+const carouselContainer = document.getElementById("carousel");
 const track = document.getElementById("track");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
-const carouselContainer = document.getElementById("carousel");
 let currentIndex = 0;
 let intervalId;
 
 function initCarousel() {
    for(let i = 0;i < 3; i++){
-       const slide = slidesData[i];
-       const slideDiv = document.createElement("div");
-       slideDiv.classList.add("carousel-slide");
-       slideDiv.innerHTML = `
+       const slide = slidesData[i];      /*记录当前元素*/
+       const slideDiv = document.createElement("div");    /*创建一个放照片的空间*/
+       slideDiv.classList.add("carousel-slide");   /*给div添加类名*/
+       slideDiv.innerHTML = `              
           <img src="${slide.src}" alt="${slide.title}"> 
            <div class="slide-content">
            <h2 class="slide-title">${slide.title}</h2>
            <p class="slide-desc">${slide.desc}</p>
-           </div>`;
-       track.appendChild(slideDiv);
+           </div>`;           /*给div添加内容*/
+       track.appendChild(slideDiv);  /*将内容插入轨道*/
    }
 }
 
@@ -75,7 +75,7 @@ function updateSlidePosition(){
 }
 // 按钮
 function nextSlide(){
-    if(currentIndex === 3-1){
+    if(currentIndex === 2){
         currentIndex = 0;
     }else{
         currentIndex = currentIndex+1;
@@ -85,7 +85,7 @@ function nextSlide(){
 
 function prevSlide(){
     if(currentIndex === 0){
-        currentIndex = 3 - 1;
+        currentIndex = 2;
     }else{
         currentIndex = currentIndex - 1;
     }
@@ -101,7 +101,7 @@ function stopAutoPlay(){
 }
 // 点击按钮
 nextBtn.addEventListener("click", function(){
-    stopAutoPlay()
+    stopAutoPlay();
     nextSlide();
 });
 prevBtn.addEventListener("click", function(){
@@ -125,14 +125,14 @@ function initCards() {
         cardScene.innerHTML = `
                     <div class="card">
                         <div class="card-font card-face">
-                        <img src="${item.src}" alt="${item.title}">
-                        <div class="card-front-caption">${item.title}</div>
-                    </div>
-                    <div class="card-face card-back">
-                        <h3>${item.title}</h3>
-                        <p>${item.desc}</p>
-                        <p class="hint">点击放大查看高清图</p>
-                    </div>
+                            <img src="${item.src}" alt="${item.title}">
+                            <div class="card-front-caption">${item.title}</div>
+                        </div>
+                        <div class="card-face card-back">
+                            <h3>${item.title}</h3>
+                            <p>${item.desc}</p>
+                            <p class="hint">点击放大查看高清图</p>
+                        </div>
                     </div>`;
         cardScene.addEventListener("click", function(){
             lightboxImg.src = item.src;
