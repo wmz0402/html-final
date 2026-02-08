@@ -47,6 +47,51 @@ const slidesData = [
             "感概的是江津人保护和打造四面山几十年的努力，终于得到了优厚的回报。"
     }
 ];
+// 登录板块
+const loginPage = document.getElementById("loginPage");
+const loginForm = document.getElementById("loginForm");
+const mainContent = document.getElementById("mainContent");
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+let isMusicPlaying = false;
+
+loginForm.addEventListener("submit",function (e){
+    e.preventDefault();
+    loginPage.style.transition = "opacity 0.5s ease";
+    loginPage.style.opacity = "0";
+
+    setTimeout(function (){
+        loginPage.style.display = "none";
+        mainContent.style.display = "block";
+        updateSlidePosition()
+        playMusic();
+    },500);
+});
+
+function playMusic(){
+    bgMusic.play().then(function (){
+        isMusicPlaying = true;
+        musicBtn.classList.add("playing");
+        musicBtn.innerHTML='<i class="fa-solid fa-compact-disc"></i>';
+    }).catch(function (error){
+        console.log(error);
+    });
+}
+
+function pauseMusic(){
+    bgMusic.pause();
+    isMusicPlaying = false;
+    musicBtn.classList.remove("playing");
+    musicBtn.innerHTML='<i class="fa-solid fa-music"></i>';
+}
+
+musicBtn.addEventListener("click",function (){
+    if (isMusicPlaying) {
+        pauseMusic();
+    }else{
+        playMusic();
+    }
+});
 
 const carouselContainer = document.getElementById("carousel");
 const track = document.getElementById("track");

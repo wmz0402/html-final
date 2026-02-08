@@ -9,6 +9,45 @@ https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/js/all.min.js
 "></script>
 </head>
 <body>
+<!--背景音乐-->
+    <audio id="bgMusic" loop>
+        <source src="music/bgm.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
+    <button class="music-btn" id="musicBtn" title="播放/暂停音乐">
+        <i class="fa-solid fa-music"></i>
+    </button>
+<!--登录注册页面-->
+    <div class="login-page" id="loginPage">
+        <div class="login-container">
+            <h1>秘境探索 · 登录</h1>
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" placeholder="用户名" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="密码" required>
+                </div>
+                <button type="submit" class="enter-btn">开启旅程</button>
+            </form>
+        </div>
+    </div>
+<!--主要内容-->
+<div id="mainContent" style="display: none">
+<!--    导航栏-->
+    <nav class="glass-nav">
+        <div class="nav-logo">中国地理</div>
+        <ul class="nav-links">
+            <li><a href="#carousel" data-target="top">首页</a></li>
+            <li><a href="#scene-0">金字塔峰</a></li>
+            <li><a href="#scene-1">极地冰川</a></li>
+            <li><a href="#scene-2">阿里雪围</a></li>
+            <li><a href="#scene-4">高原湖泊</a></li>
+            <li><a href="#scene-5">最美名山</a></li>
+        </ul>
+    </nav>
     <button class="theme-btn theme-toggle-btn" id="themeToggle" title="切换深色/浅色模式">
         <span class="themeIcon" id="themeIcon">
             <i class="fa-regular fa-moon"></i>
@@ -36,6 +75,7 @@ https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/js/all.min.js
         </span>
         <img class="lightbox-img" id="lightboxImg" src="" alt="big">
     </div>
+</div>
     <script src="JS1.js"></script>
 </body>
 </html>

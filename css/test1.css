@@ -9,7 +9,7 @@
     --text-sub: #666666;
     /*卡片背景*/
     --card-bg: #ffffff;
-   /*默认阴影*/
+    /*默认阴影*/
     --card-shadow:0 10px 20px rgba(0,0,0,0.1);
     /*阴影悬浮*/
     --card-shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.25);
@@ -17,7 +17,10 @@
     --overlay-bg: linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.4) 60%,rgba(0,0,0,0) 100%);    /*黑色渐变*/
     --toggle-btn-bg: #fff;
     --toggle-btn-icon: #333;
+    --nav-text: #fff;
+    --nav-bg: rgba(255, 255, 255, 0.1);
 }
+
 /*暗色*/
 body.dark-mode{
     --bg-color: #121212;
@@ -28,6 +31,8 @@ body.dark-mode{
     --card-shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.7);
     --toggle-btn-bg: #333;
     --toggle-btn-icon: #ffcc00;
+    --nav-text: #f0f0f0;
+    --nav-bg: rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -36,18 +41,220 @@ body.dark-mode{
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth; /* 点击导航栏平滑滚动 */
+}
+
 body {
-    font-family: "Microsoft YaHei",sans-serif;
+    /* 已移除 Google Font 引用 */
+    font-family: "Microsoft YaHei", sans-serif;
     background-color: var(--bg-color);
     color: var(--text-main);
     overflow-x: hidden;
     transition: background-color 0.4s ease, color 0.4s ease;
 }
-/*视口*/
+
+/* --- 登录页面样式 --- */
+.login-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 请确保 view/img1.jpg 存在，或替换为其他图片路径 */
+    background: url('../view/img7.jpg') no-repeat center center/cover;
+    z-index: 2000; /* 最高层级 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 给背景加一个遮罩让文字更清晰 */
+.login-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.login-container {
+    position: relative;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+    width: 400px;
+    color: white;
+}
+
+.login-container h1 {
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: none;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    outline: none;
+    transition: background 0.3s;
+}
+
+.input-group input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.input-group input:focus {
+    background: rgba(255,255,255,0.3);
+}
+
+.enter-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    margin-top: 10px;
+}
+
+.enter-btn:hover {
+    transform: scale(1.05);
+    background: #c0392b;
+}
+
+/* --- 毛玻璃导航栏 --- */
+.glass-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px); /* 关键：毛玻璃模糊 */
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000; /* 比轮播图高 */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.4s ease;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.nav-links li a:hover {
+    color: var(--primary-color);
+}
+
+/* --- 音乐按钮 --- */
+.music-btn {
+    position: fixed;
+    top: 80px; /* 避开导航栏 */
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    backdrop-filter: blur(5px);
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+    animation: rotateMusic 4s linear infinite paused; /* 默认暂停 */
+}
+
+.music-btn.playing {
+    background: var(--primary-color);
+    animation-play-state: running; /* 播放时旋转 */
+}
+
+@keyframes rotateMusic {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* --- 深浅模式按钮位置 (移至右下) --- */
+.theme-btn{
+    position: fixed;
+    bottom: 30px; /* 改为底部 */
+    right: 30px;  /* 改为右侧 */
+    top: auto;    /* 取消顶部定位 */
+    z-index: 100;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--toggle-btn-bg);
+    color: var(--toggle-btn-icon);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, background-color 0.4s;
+    font-size: 24px;
+}
+
+.theme-toggle-btn:hover{
+    transform: rotate(15deg) scale(1.1);      /*旋转和放大*/
+}
+
+/* --- 原有视口与轮播图 --- */
 .carousel-container {
     position: relative;
     width: 100%;
-    height: 700px;
+    height: 100vh; /* 改为全屏高度 */
     overflow: hidden;
     background-color: #000;
 }
@@ -77,7 +284,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 40px 60px;
+    padding: 60px 60px 80px 60px; /* 增加底部padding */
     background: var(--overlay-bg);
     color: #fff;
     text-align: left;     /*左对齐*/
@@ -133,32 +340,8 @@ body {
     right: 20px;
 }
 
-.theme-btn{
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 100;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    background-color: var(--toggle-btn-bg);
-    color: var(--toggle-btn-icon);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s, background-color 0.4s;
-    font-size: 24px;
-}
-
-.theme-toggle-btn:hover{
-    transform: rotate(15deg) scale(1.1);      /*旋转和放大*/
-}
-
 .gallery-section {
-    padding: 60px 20px;
+    padding: 100px 20px 60px 20px; /* 增加顶部padding，为锚点跳转留出空间 */
     max-width: 1200px;
     margin: auto;
 }
@@ -194,6 +377,7 @@ body {
     perspective: 1000px;
     cursor: pointer;
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    scroll-margin-top: 100px; /* 锚点定位偏移 */
 }
 /*鼠标停留上浮*/
 .card-scene:hover {
@@ -287,7 +471,7 @@ body {
 .lightbox {        /*黑色底，平时隐藏*/
     display: none;
     position: fixed;
-    z-index: 999;   /*覆盖后面的东西*/
+    z-index: 9999;   /*覆盖后面的东西，比导航栏高 */
     top: 0;
     left: 0;
     width: 100%;
@@ -316,8 +500,8 @@ body {
     from {
         transform: scale(0.8);  /*刚开始的图片是原来的80%*/
     } to {
-    transform: scale(1);
-          }
+          transform: scale(1);
+      }
 }
 
 .close-lightbox {
@@ -334,8 +518,14 @@ body {
 /*移动端适配*/
 
 @media screen and (max-width: 768px) {
+    .glass-nav {
+        padding: 10px 20px;
+    }
+    .nav-links {
+        display: none; /* 移动端简单处理：隐藏导航链接 */
+    }
     .carousel-container {
-        height: 50vh;
+        height: 60vh;
     }
     .slide-content {
         padding: 20px 20px;
@@ -364,7 +554,10 @@ body {
         width: 40px;
         height: 40px;
         font-size: 20px;
-        top: 15px;
-        right: 15px;
+        bottom: 20px;
+        right: 20px;
+    }
+    .login-container {
+        width: 90%;
     }
 }
