@@ -46,12 +46,11 @@ html {
 }
 
 body {
-    /* 已移除 Google Font 引用 */
     font-family: "Microsoft YaHei", sans-serif;
     background-color: var(--bg-color);
     color: var(--text-main);
-    overflow-x: hidden;
-    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;             /*隐藏水平溢出 防止出现横向滚动条*/
+    transition: background-color 0.4s ease, color 0.4s ease;  /*切换主题颜色时变换的更加自然*/
 }
 
 /* --- 登录页面样式 --- */
@@ -61,7 +60,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* 请确保 view/img1.jpg 存在，或替换为其他图片路径 */
     background: url('../view/img7.jpg') no-repeat center center/cover;
     z-index: 2000; /* 最高层级 */
     display: flex;
@@ -96,7 +94,7 @@ body {
 .login-container h1 {
     margin-bottom: 30px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 2px;   /*字间距*/
 }
 
 .input-group {
@@ -227,9 +225,9 @@ body {
 /* --- 深浅模式按钮位置 (移至右下) --- */
 .theme-btn{
     position: fixed;
-    bottom: 30px; /* 改为底部 */
-    right: 30px;  /* 改为右侧 */
-    top: auto;    /* 取消顶部定位 */
+    bottom: 30px;
+    right: 30px;
+    top: auto;
     z-index: 100;
     width: 50px;
     height: 50px;
@@ -254,13 +252,13 @@ body {
 .carousel-container {
     position: relative;
     width: 100%;
-    height: 100vh; /* 改为全屏高度 */
-    overflow: hidden;
+    height: 100vh;
+    overflow: hidden;  /*隐藏超出范围的照片*/
     background-color: #000;
 }
 /*胶卷*/
 .carousel-track {
-    display: flex;
+    display: flex;    /*排成一排*/
     height: 100%;
     transition: transform 0.6s ease;
 }

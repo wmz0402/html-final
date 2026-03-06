@@ -79,7 +79,7 @@ function playMusic(){
 }
 
 function pauseMusic(){
-    bgMusic.pause();
+    bgMusic.pause();       /*暂停音乐*/
     isMusicPlaying = false;
     musicBtn.classList.remove("playing");
     musicBtn.innerHTML='<i class="fa-solid fa-music"></i>';
